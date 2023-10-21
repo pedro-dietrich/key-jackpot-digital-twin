@@ -1,0 +1,13 @@
+.vs/
+.vscode/
+
+build/
+install/
+
+compile.sh
+compile.bat
+compile.cmd
+
+run.sh
+run.bat
+run.cmd
