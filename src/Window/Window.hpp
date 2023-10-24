@@ -25,6 +25,10 @@ class Window
         // GLFW's window object
         GLFWwindow* glfwWindow;
 
+        // Window's width and height
+        unsigned int width;
+        unsigned int height;
+
         // Private constructor
         Window();
 
