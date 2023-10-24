@@ -16,6 +16,7 @@ In order to install the digital twin, you will need to install:
 - vcpkg, installing the following packages:
   - GLFW3;
   - GLAD;
+  - GLM;
 - A build tool, such as MinGW Makefile, Ninja or Visual Studio Code;
 
 ---
@@ -25,6 +26,7 @@ To install the packages run the following vcpkg commands:
 ```bash
 vcpkg install glfw3
 vcpkg install glad
+vcpkg install glm
 ```
 
 ---
