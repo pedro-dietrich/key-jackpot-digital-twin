@@ -2,6 +2,7 @@
 
 #include <iostream>
 
+// Unique window instance
 Window* Window::windowInstance = nullptr;
 
 // Private window constructor
@@ -10,13 +11,18 @@ Window::Window()
     // Initializes GLFW
 	glfwInit();
 
-	// Informs GLFW that it is being used OpenGL 3.3 and CORE profile
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+	// Informs GLFW that it is being used OpenGL 2.1
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 2);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
+    // Does not allow resize (it would stretch the image)
+    glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
+
+    // Sets the window dimensions
+    Window::width = 800;
+    Window::height = 800;
 
 	// Creates a 800x800 window
-	glfwWindow = glfwCreateWindow(800, 800, "Key Jackpot - Digital Twin", NULL, NULL);
+	glfwWindow = glfwCreateWindow(width, height, "Key Jackpot - Digital Twin", NULL, NULL);
 
 	// Tests if the window has been successfully created
 	checkWindowCreation();
@@ -28,7 +34,7 @@ Window::Window()
 	gladLoadGL();
 
     // Normalizes window coordinates
-	glViewport(0, 0, 800, 800);
+	glViewport(0, 0, width, height);
 }
 
 // Gets the only window instance
