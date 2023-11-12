@@ -2,14 +2,21 @@
 
 #include <glad/glad.h>
 
+#include "ShaderProgram.hpp"
+
 class Texture
 {
     public:
         // Reference ID of the texture
         GLuint ID;
+        // OpenGL texture unit slot
+        GLuint slot;
 
         // Texture constructor
-        Texture(const char* imageFile);
+        Texture(const char* imageFile, GLuint slot);
+
+        // Assigns a texture unit to a texture
+        void textureUnit(ShaderProgram &shader, const char* uniform, GLuint unit);
 
         // Makes this texture the current one
         void bind();

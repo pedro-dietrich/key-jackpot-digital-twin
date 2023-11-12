@@ -4,8 +4,11 @@
 #include <stb_image.h>
 
 // Texture constructor
-Texture::Texture(const char* imageFile)
+Texture::Texture(const char* imageFile, GLuint slot)
 {
+    // Saves the texture unit slot
+    this->slot = slot;
+
     // Loads the texture image and its parameters
     int width, height, numberColorChannels;
     unsigned char* imageBytes = stbi_load(imageFile, &width, &height, &numberColorChannels, 0);
@@ -27,10 +30,18 @@ Texture::Texture(const char* imageFile)
     glBindTexture(GL_TEXTURE_2D, 0);
 }
 
+// Assigns a texture unit to a texture
+void Texture::textureUnit(ShaderProgram &shader, const char* uniform, GLuint unit)
+{
+    GLuint texUnit = glGetUniformLocation(shader.ID, uniform);
+    shader.activate();
+    glUniform1i(texUnit, unit);
+}
+
 // Makes this texture the current one
 void Texture::bind()
 {
-    glActiveTexture(GL_TEXTURE0);
+    glActiveTexture(GL_TEXTURE0 + slot);
     glBindTexture(GL_TEXTURE_2D, ID);
 }
 
