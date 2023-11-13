@@ -16,6 +16,9 @@ class Mesh
         // Draws the mesh on the screen
         void draw(glm::vec3 translation = glm::vec3(0.0f, 0.0f, 0.0f), glm::quat rotation = glm::quat(1.0f, 0.0f, 0.0f, 0.0f));
 
+        // Deletes the mesh
+        void destroy();
+
     private:
         // Mesh vertices
         std::vector<Vertex> vertices;

@@ -47,10 +47,14 @@ void Mesh::draw(glm::vec3 translation, glm::quat rotation)
     glUniformMatrix4fv(rotation_location, 1, GL_FALSE, glm::value_ptr(rotation_mat4));
 
     // Draws the mesh triangles using the GL_TRIANGLES primitive
-
     glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, 0);
 
     vao.unbind();
+}
+
+void Mesh::destroy()
+{
+    vao.destroy();
 }
 
 // Generates the VBO and the EBO, linking them to the VAO
