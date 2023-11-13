@@ -1,5 +1,6 @@
 #include "FileHandler.hpp"
 
+#include <iostream>
 #include <fstream>
 
 // Returns a string containing the file contents
@@ -11,6 +12,7 @@ std::string get_file_contents(const char* file_name)
     // Checks for errors when opening the file
     if(!input_file)
     {
+        std::cerr << "File " << file_name << " was not found." << std::endl;
         throw(errno);
         return NULL;
     }
