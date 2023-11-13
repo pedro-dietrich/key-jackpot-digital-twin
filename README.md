@@ -13,23 +13,18 @@ In order to install the digital twin, you will need to install:
 
 - C++ compiler, such as g++, MSVC or CLang++;
 - CMake (version 3.17 or superior);
-- vcpkg, installing the following packages:
-  - GLFW3;
-  - GLAD;
-  - GLM;
-  - Stb;
-- A build tool, such as MinGW Makefile, Ninja or Visual Studio Code;
+- vcpkg;
+- A build tool, such as MinGW Makefile, Ninja or Visual Studio 2022;
 
 ---
 
-To install the packages run the following vcpkg commands:
+To install the packages run the following vcpkg command:
 
 ```bash
-vcpkg install glfw3
-vcpkg install glad
-vcpkg install glm
-vcpkg install stb
+vcpkg install
 ```
+
+It installs all packages specified in the `vcpkg.json` file. Usually, running CMake also runs this command by default.
 
 ---
 

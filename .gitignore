@@ -3,6 +3,7 @@
 
 build/
 install/
+vcpkg_installed/
 
 compile.sh
 compile.bat
@@ -11,3 +12,7 @@ compile.cmd
 run.sh
 run.bat
 run.cmd
+
+clear.sh
+clear.bat
+clear.cmd

@@ -6,7 +6,9 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(glfw3 REQUIRED)
 find_package(glad REQUIRED)
+find_package(glm REQUIRED)
 find_package(Stb REQUIRED)
+find_package(nlohmann_json REQUIRED)
 
 set(
     INCLUDES
@@ -17,6 +19,8 @@ set(
     LIBRARIES
     glfw
     glad::glad
+    glm::glm
+    nlohmann_json::nlohmann_json
 )
 
 set(EXECUTABLE "key_jackpot_digital_twin")
