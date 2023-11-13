@@ -18,8 +18,8 @@ class ShaderProgram
 
     private:
         // Creates an OpenGL shader object and returns its reference
-        GLuint createShaderObject(const char* shaderCode, const char* shaderType);
+        GLuint createShaderObject(const char* shaderSource, const char* shaderType, GLuint shaderEnum);
 
         // Checks for shader compilation errors
-        void compileErrors(unsigned int shader, const char* type);
+        void compileErrors(GLuint shader, const char* type);
 };

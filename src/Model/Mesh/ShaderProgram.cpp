@@ -8,25 +8,30 @@
 ShaderProgram::ShaderProgram(const char *vertexFile, const char *fragmentFile)
 {
     // Reads the vertex and fragment shaders files and stores them in character arrays
-    const char* vertexCode = get_file_contents(vertexFile).c_str();
-    const char* fragmentCode = get_file_contents(fragmentFile).c_str();
+    std::string vertexCode = get_file_contents(vertexFile);
+    std::string fragmentCode = get_file_contents(fragmentFile);
+
+    const char* vertexSource = vertexCode.c_str();
+    const char* fragmentSource = fragmentCode.c_str();
 
     // Creates the shader object reference for both shaders
-    GLuint vertexShader = createShaderObject(vertexCode, "Vertex Shader");
-    GLuint fragmentShader = createShaderObject(fragmentCode, "Fragment Shader");
+    GLuint vertexShader = createShaderObject(vertexSource, "Vertex Shader", GL_VERTEX_SHADER);
+    GLuint fragmentShader = createShaderObject(fragmentSource, "Fragment Shader", GL_FRAGMENT_SHADER);
 
     // Creates the OpenGL shader program object and gets its reference
-    this->ID = glCreateProgram();
+    ID = glCreateProgram();
+
     // Attach both shaders to the shader program and links them together
     glAttachShader(ID, vertexShader);
     glAttachShader(ID, fragmentShader);
     glLinkProgram(ID);
+
     // Checks for compilation errors in the shader program
     compileErrors(ID, "Shader Program");
 
     // Deletes the already used shader objects
     glDeleteShader(vertexShader);
-    glDeleteProgram(fragmentShader);
+    glDeleteShader(fragmentShader);
 }
 
 // Activates the shader program to allow usage
@@ -42,12 +47,12 @@ void ShaderProgram::destroy()
 }
 
 // Creates an OpenGL shader object and returns its reference
-GLuint ShaderProgram::createShaderObject(const char* shaderCode, const char* shaderType)
+GLuint ShaderProgram::createShaderObject(const char* shaderSource, const char* shaderType, GLuint shaderEnum)
 {
     // Creates an OpenGL shader object and gets its reference
-    GLuint shaderReference = glCreateShader(GL_VERTEX_SHADER);
+    GLuint shaderReference = glCreateShader(shaderEnum);
     // Attaches the GLSL shader code to the shader object
-    glShaderSource(shaderReference, 1, &shaderCode, NULL);
+    glShaderSource(shaderReference, 1, &shaderSource, nullptr);
     // Compiles the shader code
     glCompileShader(shaderReference);
 
@@ -59,18 +64,34 @@ GLuint ShaderProgram::createShaderObject(const char* shaderCode, const char* sha
 }
 
 // Checks for shader compilation errors
-void ShaderProgram::compileErrors(unsigned int shader, const char *type)
+void ShaderProgram::compileErrors(GLuint shader, const char* type)
 {
-    // Verify if shader compilation status
-    GLint hasCompiled;
-    glGetShaderiv(shader, GL_COMPILE_STATUS, &hasCompiled);
-
-    // In case of failure, the error message is printed
-    if(hasCompiled == GL_FALSE)
+    if(type != "Shader Program")
     {
-        char infoLog[1024];
-        glGetShaderInfoLog(shader, 1024, NULL, infoLog);
-        std::cerr << "Shader compilation error for: " << type << std::endl <<
-            "Info log: " << infoLog << std::endl << std::endl;
+        // Verify the shader compilation status
+        GLint compileStatus;
+        glGetShaderiv(shader, GL_COMPILE_STATUS, &compileStatus);
+
+        if(compileStatus == GL_FALSE)
+        {
+            char infoLog[1024];
+            glGetShaderInfoLog(shader, 1024, NULL, infoLog);
+            std::cerr << "Shader compilation error for: " << type << std::endl <<
+                "Info log: " << infoLog << std::endl;
+        }
+    }
+    else
+    {
+        // Verify the shader program linking status
+        GLint linkStatus;
+        glGetProgramiv(shader, GL_LINK_STATUS, &linkStatus);
+
+        if(linkStatus == GL_FALSE)
+        {
+            char infoLog[1024];
+            glGetProgramInfoLog(shader, 1024, NULL, infoLog);
+            std::cerr << "Shader linking error for: " << type << std::endl <<
+                "Info log: " << infoLog << std::endl;
+        }
     }
 }
