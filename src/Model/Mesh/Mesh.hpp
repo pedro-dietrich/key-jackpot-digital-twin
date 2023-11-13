@@ -11,15 +11,10 @@ class Mesh
 {
     public:
         // Creates a mesh
-        Mesh(std::vector<Vertex>& vertices, std::vector<GLuint>& indices, std::vector<Texture>& textures);
+        Mesh(std::vector<Vertex>& vertices, std::vector<GLuint>& indices, std::vector<Texture>& textures, ShaderProgram& shader);
 
         // Draws the mesh on the screen
-        void draw
-        (
-            ShaderProgram& shader,
-            glm::vec3 translation = glm::vec3(0.0f, 0.0f, 0.0f),
-            glm::quat rotation = glm::quat(1.0f, 0.0f, 0.0f, 0.0f)
-        );
+        void draw(glm::vec3 translation = glm::vec3(0.0f, 0.0f, 0.0f), glm::quat rotation = glm::quat(1.0f, 0.0f, 0.0f, 0.0f));
 
     private:
         // Mesh vertices
@@ -28,6 +23,8 @@ class Mesh
         std::vector<GLuint> indices;
         // Mesh textures
         std::vector<Texture> textures;
+        // Mesh shader
+        ShaderProgram* shaderProgram;
         // Mesh VAO
         VAO vao;
 
