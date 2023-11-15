@@ -1,0 +1,22 @@
+{
+    "name": "key-jackpot-digital-twin",
+    "version-string": "1.0",
+    "dependencies":
+    [
+        {
+            "name": "glfw3"
+        },
+        {
+            "name": "glad"
+        },
+        {
+            "name": "glm"
+        },
+        {
+            "name": "stb"
+        },
+        {
+            "name": "nlohmann-json"
+        }
+    ]
+}
