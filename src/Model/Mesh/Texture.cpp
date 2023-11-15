@@ -8,6 +8,8 @@ Texture::Texture(const char* imageFile, GLuint slot)
 {
     // Saves the texture unit slot
     this->slot = slot;
+    // Flips the image to not appear upside down
+    stbi_set_flip_vertically_on_load(true);
 
     // Loads the texture image and its parameters
     int width, height, numberColorChannels;
