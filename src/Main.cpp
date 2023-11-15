@@ -1,9 +1,21 @@
 #include "Window/Window.hpp"
 
+#include "Model/Model.hpp"
+
 int main()
 {
 	// Create window
 	Window* window = Window::getWindowInstance();
+
+	// Creates the default shader program
+	ShaderProgram defaultShader("../resources/Shaders/Default.vert", "../resources/Shaders/Default.frag");
+
+	// Creates the model for the base of the structure
+	Model base("../resources/Models/Base/Base.gltf", defaultShader);
+	base.setScale(0.04f);
+
+	// Enables depth test to only render the closest surface
+	glEnable(GL_DEPTH_TEST);
 
 	// Main while loop
 	while(window->manageWindow())
@@ -11,6 +23,10 @@ int main()
 		// Specifies a new background color, cleans the back and depth buffers and assigns a new color to it
 		glClearColor(0.06f, 0.12f, 0.20f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+		// Rotates and draws the base
+		base.setRotation(glfwGetTime()/4, glm::vec3(0.8f, 0.6f, 0.0f));
+		base.draw();
 
 		window->updateWindow();
 	}
