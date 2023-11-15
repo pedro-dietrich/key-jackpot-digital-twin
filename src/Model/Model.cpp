@@ -24,7 +24,7 @@ void Model::draw()
 {
     for(unsigned int i=0; i<meshes.size(); i++)
     {
-        meshes[i].draw(translationVector, rotationQuaternion);
+        meshes[i].draw(translationVector, rotationQuaternion, scaleVector);
     }
 }
 
@@ -38,4 +38,10 @@ void Model::setPosition(glm::vec3 position)
 void Model::setRotation(float angle, glm::vec3 rotationAxis)
 {
     rotationQuaternion = glm::angleAxis(angle, rotationAxis);
+}
+
+// Update the model scale
+void Model::setScale(float scale)
+{
+    scaleVector = glm::vec3(scale, scale, scale);
 }

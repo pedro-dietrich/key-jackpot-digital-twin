@@ -8,6 +8,7 @@ attribute vec2 aTex;
 // Inputs the transformation matrices
 uniform mat4 translation;
 uniform mat4 rotation;
+uniform mat4 scale;
 
 // Outputs the texture coordinates to the fragment shader
 varying vec2 texCoord;
@@ -18,5 +19,5 @@ void main()
     texCoord = aTex;
 
     // Applies the transformation matrices and output the vertices positions
-    gl_Position = translation * rotation * vec4(aPos, 1.0f);
+    gl_Position = translation * rotation * scale * vec4(aPos, 1.0f);
 }

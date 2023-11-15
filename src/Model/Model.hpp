@@ -14,6 +14,7 @@ class Model
         // Sets the position and rotation of the model
         void setPosition(glm::vec3 position);
         void setRotation(float angle, glm::vec3 rotationAxis);
+        void setScale(float scale);
 
     private:
         // Meshes that compose the model
@@ -24,7 +25,8 @@ class Model
         // Shader for the model
         ShaderProgram* shaderProgram;
 
-        // Transformation vector and quaternion for the model
+        // Transformation vectors and quaternion for the model
         glm::vec3 translationVector;
         glm::quat rotationQuaternion;
+        glm::vec3 scaleVector;
 };

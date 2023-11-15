@@ -18,7 +18,7 @@ Mesh::Mesh(std::vector<Vertex>& vertices, std::vector<GLuint>& indices, std::vec
 }
 
 // Draws the mesh on the screen
-void Mesh::draw(glm::vec3 translation, glm::quat rotation)
+void Mesh::draw(glm::vec3 translation, glm::quat rotation, glm::vec3 scale)
 {
     // Tells OpenGL which shader program to use
     shaderProgram->activate();
@@ -33,18 +33,23 @@ void Mesh::draw(glm::vec3 translation, glm::quat rotation)
         textures[i].bind();
     }
 
-    // Creates the translation matrix and get the export location
+    // Creates the translation matrix and gets the export location
     glm::mat4 translation_mat4 = glm::mat4(1.0f);
     translation_mat4[3] = glm::vec4(translation, 1.0f);
     GLint translation_location = glGetUniformLocation(shaderProgram->ID, "translation");
 
-    // Creates the rotation matrix and get the export location
+    // Creates the rotation matrix and gets the export location
     glm::mat4 rotation_mat4 = glm::mat4_cast(rotation);
     GLint rotation_location = glGetUniformLocation(shaderProgram->ID, "rotation");
+
+    // Creates the scale matrix and gets the export location
+    glm::mat4 scale_mat4 = glm::scale(scale);
+    GLuint scale_location = glGetUniformLocation(shaderProgram->ID, "scale");
 
     // Exports the transformation matrices to the vertex shader
     glUniformMatrix4fv(translation_location, 1, GL_FALSE, glm::value_ptr(translation_mat4));
     glUniformMatrix4fv(rotation_location, 1, GL_FALSE, glm::value_ptr(rotation_mat4));
+    glUniformMatrix4fv(scale_location, 1, GL_FALSE, glm::value_ptr(scale_mat4));
 
     // Draws the mesh triangles using the GL_TRIANGLES primitive
     glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, 0);
