@@ -9,7 +9,7 @@ class Model
         Model(const char* modelFile, ShaderProgram& shader);
 
         // Draws the whole model
-        void draw();
+        void draw(Camera& camera);
 
         // Sets the position and rotation of the model
         void setPosition(glm::vec3 position);

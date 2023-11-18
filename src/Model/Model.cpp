@@ -20,11 +20,11 @@ Model::Model(const char* modelFile, ShaderProgram& shader)
 }
 
 // Draws the whole model
-void Model::draw()
+void Model::draw(Camera& camera)
 {
     for(unsigned int i=0; i<meshes.size(); i++)
     {
-        meshes[i].draw(translationVector, rotationQuaternion, scaleVector);
+        meshes[i].draw(camera, translationVector, rotationQuaternion, scaleVector);
     }
 }
 

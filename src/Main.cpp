@@ -1,12 +1,13 @@
 #include "Window/Window.hpp"
-
+#include "Camera/Camera.hpp"
 #include "Model/Model.hpp"
 
 int main()
 {
 	// Create window
 	Window* window = Window::getWindowInstance();
-
+	// Creates camera
+	Camera camera;
 	// Creates the default shader program
 	ShaderProgram defaultShader("../resources/Shaders/Default.vert", "../resources/Shaders/Default.frag");
 
@@ -24,9 +25,12 @@ int main()
 		glClearColor(0.06f, 0.12f, 0.20f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+		// Updates camera
+		camera.updateMatrix();
+
 		// Rotates and draws the base
 		base.setRotation(glfwGetTime()/4, glm::vec3(0.8f, 0.6f, 0.0f));
-		base.draw();
+		base.draw(camera);
 
 		window->updateWindow();
 	}
