@@ -1,4 +1,5 @@
 #include "Window/Window.hpp"
+#include "Window/KeyInput.hpp"
 #include "Camera/Camera.hpp"
 #include "Model/Model.hpp"
 
@@ -8,6 +9,9 @@ int main()
 	Window* window = Window::getWindowInstance();
 	// Creates camera
 	Camera camera;
+	// Creates a KeyInput object to handle input
+	KeyInput keyInput(&camera);
+
 	// Creates the default shader program
 	ShaderProgram defaultShader("../resources/Shaders/Default.vert", "../resources/Shaders/Default.frag");
 
@@ -25,6 +29,8 @@ int main()
 		glClearColor(0.06f, 0.12f, 0.20f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+		// Handles inputs
+		keyInput.handleInputs();
 		// Updates camera
 		camera.updateMatrix();
 
