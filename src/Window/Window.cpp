@@ -55,6 +55,24 @@ void Window::updateWindow()
     glfwPollEvents();
 }
 
+// Gets the window's width
+unsigned int Window::getWidth()
+{
+    return width;
+}
+
+// Gets the window's height
+unsigned int Window::getHeight()
+{
+    return height;
+}
+
+// Gets GLFW window object
+GLFWwindow* Window::getGLFWwindow()
+{
+    return glfwWindow;
+}
+
 // Checks if the window was successfully created
 void Window::checkWindowCreation()
 {

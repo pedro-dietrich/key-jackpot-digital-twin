@@ -7,7 +7,13 @@
 #include "EBO.hpp"
 
 // Creates a mesh
-Mesh::Mesh(std::vector<Vertex>& vertices, std::vector<GLuint>& indices, std::vector<Texture>& textures, ShaderProgram& shader)
+Mesh::Mesh
+(
+    std::vector<Vertex>& vertices,
+    std::vector<GLuint>& indices,
+    std::vector<Texture>& textures,
+    ShaderProgram& shader
+)
 {
     this->vertices = vertices;
     this->indices = indices;
@@ -18,7 +24,7 @@ Mesh::Mesh(std::vector<Vertex>& vertices, std::vector<GLuint>& indices, std::vec
 }
 
 // Draws the mesh on the screen
-void Mesh::draw(glm::vec3 translation, glm::quat rotation, glm::vec3 scale)
+void Mesh::draw(Camera& camera, glm::vec3 translation, glm::quat rotation, glm::vec3 scale)
 {
     // Tells OpenGL which shader program to use
     shaderProgram->activate();
@@ -50,6 +56,7 @@ void Mesh::draw(glm::vec3 translation, glm::quat rotation, glm::vec3 scale)
     glUniformMatrix4fv(translation_location, 1, GL_FALSE, glm::value_ptr(translation_mat4));
     glUniformMatrix4fv(rotation_location, 1, GL_FALSE, glm::value_ptr(rotation_mat4));
     glUniformMatrix4fv(scale_location, 1, GL_FALSE, glm::value_ptr(scale_mat4));
+    camera.exportMatrix(*shaderProgram, "camera");
 
     // Draws the mesh triangles using the GL_TRIANGLES primitive
     glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, 0);

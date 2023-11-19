@@ -18,6 +18,12 @@ class Window
         // Swaps buffers and handle window events
         void updateWindow();
 
+        // Gets window's width and height
+        unsigned int getWidth();
+        unsigned int getHeight();
+        // Gets GLFW window object
+        GLFWwindow* getGLFWwindow();
+
     private:
         // Window class single instance
         static Window* windowInstance;
