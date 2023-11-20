@@ -19,7 +19,7 @@ ModelLoader::ModelLoader
 )
 {
     file = modelFile;
-    std::string text = get_file_contents(file);
+    std::string text = FileHandler::getFileContents("resources/Models/", file);
     JSON = nlohmann::json::parse(text);
 
     shaderProgram = &shader;
@@ -41,7 +41,7 @@ void ModelLoader::getJSONData()
     // Puts the file's content into a string
     std::string fileStr = std::string(file);
     std::string fileDirectory = fileStr.substr(0, fileStr.find_last_of('/') + 1);
-    std::string bytesText = get_file_contents((fileDirectory + uri).c_str());
+    std::string bytesText = FileHandler::getFileContents("resources/Models/", (fileDirectory + uri).c_str());
 
     // Puts the file's content into a char vector
     data = std::vector<unsigned char>(bytesText.begin(), bytesText.end());

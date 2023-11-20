@@ -14,7 +14,7 @@ enum ViewMode
 // Directions for camera movement
 enum Direction
 {
-    FOWARD,
+    FORWARD,
     BACKWARD,
     LEFT,
     RIGHT,

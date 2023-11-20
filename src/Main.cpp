@@ -1,10 +1,17 @@
+#include "Helpers/FileHandler.hpp"
 #include "Window/Window.hpp"
 #include "Window/KeyInput.hpp"
 #include "Camera/Camera.hpp"
 #include "Model/Model.hpp"
 
-int main()
+int main(int argc, char** argv)
 {
+	// Sets the path for the executable
+	if(argc > 0)
+		FileHandler::setRootPath(argv[0]);
+	else
+		return -1;
+
 	// Create window
 	Window* window = Window::getWindowInstance();
 	// Creates camera
@@ -13,10 +20,10 @@ int main()
 	KeyInput keyInput(&camera);
 
 	// Creates the default shader program
-	ShaderProgram defaultShader("../resources/Shaders/Default.vert", "../resources/Shaders/Default.frag");
+	ShaderProgram defaultShader("Default.vert", "Default.frag");
 
 	// Creates the model for the base of the structure
-	Model base("../resources/Models/Base/Base.gltf", defaultShader);
+	Model base("Base/Base.gltf", defaultShader);
 	base.setScale(0.04f);
 
 	// Enables depth test to only render the closest surface

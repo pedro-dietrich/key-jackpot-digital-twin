@@ -20,7 +20,7 @@ void KeyInput::handleInputs()
 
     // Camera movement
     if(glfwGetKey(win, GLFW_KEY_W) == GLFW_PRESS)               // W
-        camera->moveCamera(FOWARD);                             // Moves camera foward
+        camera->moveCamera(FORWARD);                            // Moves camera foward
     if(glfwGetKey(win, GLFW_KEY_S) == GLFW_PRESS)               // S
         camera->moveCamera(BACKWARD);                           // Moves camera backward
     if(glfwGetKey(win, GLFW_KEY_A) == GLFW_PRESS)               // A
