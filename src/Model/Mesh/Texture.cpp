@@ -3,6 +3,8 @@
 #include <iostream>
 #include <stb_image.h>
 
+#include "../../Helpers/FileHandler.hpp"
+
 // Texture constructor
 Texture::Texture(const char* imageFile, GLuint slot)
 {
@@ -11,9 +13,12 @@ Texture::Texture(const char* imageFile, GLuint slot)
     // Flips the image to not appear upside down
     stbi_set_flip_vertically_on_load(true);
 
+    // Gets the path to the image file
+    std::string imagePath = FileHandler::getPath("resources/Models/", imageFile);
+
     // Loads the texture image and its parameters
     int width, height, numberColorChannels;
-    unsigned char* imageBytes = stbi_load(imageFile, &width, &height, &numberColorChannels, 0);
+    unsigned char* imageBytes = stbi_load(imagePath.c_str(), &width, &height, &numberColorChannels, 0);
 
     // Generates an OpenGL texture object
     glGenTextures(1, &ID);

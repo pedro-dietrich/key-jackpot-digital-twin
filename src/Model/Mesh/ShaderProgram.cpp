@@ -8,8 +8,8 @@
 ShaderProgram::ShaderProgram(const char *vertexFile, const char *fragmentFile)
 {
     // Reads the vertex and fragment shaders files and stores them in character arrays
-    std::string vertexCode = get_file_contents(vertexFile);
-    std::string fragmentCode = get_file_contents(fragmentFile);
+    std::string vertexCode = FileHandler::getFileContents("resources/Shaders/", vertexFile);
+    std::string fragmentCode = FileHandler::getFileContents("resources/Shaders/", fragmentFile);
 
     const char* vertexSource = vertexCode.c_str();
     const char* fragmentSource = fragmentCode.c_str();

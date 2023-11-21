@@ -33,7 +33,7 @@ void Camera::moveCamera(Direction direction)
     {
         switch(direction)
         {
-            case FOWARD:
+            case FORWARD:
                 position += speed * orientation;
                 break;
             case BACKWARD:

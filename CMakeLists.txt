@@ -26,6 +26,7 @@ set(
 set(EXECUTABLE "key_jackpot_digital_twin")
 file(GLOB_RECURSE SRC_FILES "src/**.cpp")
 add_executable(${EXECUTABLE} ${SRC_FILES})
+file(COPY ${CMAKE_SOURCE_DIR}/resources DESTINATION ${CMAKE_BINARY_DIR})
 
 target_include_directories(${EXECUTABLE} PRIVATE ${INCLUDES})
 
@@ -33,3 +34,4 @@ target_link_libraries(${EXECUTABLE} PRIVATE ${LIBRARIES})
 
 install(TARGETS ${EXECUTABLE} DESTINATION .)
 install(FILES $<TARGET_FILE:glfw> DESTINATION .)
+install(DIRECTORY ${CMAKE_SOURCE_DIR}/resources DESTINATION .)
