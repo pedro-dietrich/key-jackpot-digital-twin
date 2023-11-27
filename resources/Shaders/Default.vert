@@ -4,6 +4,8 @@
 attribute vec3 aPos;
 // Texture coordinates
 attribute vec2 aTex;
+// Normal vectors
+attribute vec3 aNormal;
 
 // Inputs the transformation matrices
 uniform mat4 translation;
@@ -12,13 +14,16 @@ uniform mat4 scale;
 // Camera matrix transformation for perspective
 uniform mat4 camera;
 
-// Outputs the texture coordinates to the fragment shader
+// Outputs the texture coordinates and normal vectors to the fragment shader
 varying vec2 texCoord;
+varying vec3 normal;
 
 void main()
 {
-    // Passes the texture coordinates to the fragment shader
+    // Passes the normal and texture coordinates to the fragment shader
     texCoord = aTex;
+    vec4 rotatedNormal = rotation * vec4(aNormal, 1.0f);
+    normal = vec3(rotatedNormal.x, rotatedNormal.y, rotatedNormal.z);
 
     // Applies the transformation matrices
     vec4 currentPosition = translation * rotation * scale * vec4(aPos, 1.0f);

@@ -42,7 +42,12 @@ class ModelLoader
         void loadMesh(unsigned int meshIndex);
 
         // Groups the position, normal and texture vectors in a Vertex vector
-        std::vector<Vertex> assembleVertices(std::vector<glm::vec3> positions, std::vector<glm::vec2> textureUVs);
+        std::vector<Vertex> assembleVertices
+        (
+            std::vector<glm::vec3> positions,
+            std::vector<glm::vec2> textureUVs,
+            std::vector<glm::vec3> normals
+        );
 
         // Gets specific information from the JSON
         std::vector<float> getFloats(nlohmann::json accessor);

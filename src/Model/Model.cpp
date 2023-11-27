@@ -17,6 +17,7 @@ Model::Model(const char* modelFile, ShaderProgram& shader)
     // Initial values for the model modifiers
     translationVector = glm::vec3(0.0f, 0.0f, 0.0f);
     rotationQuaternion = glm::quat(1.0f, 0.0f, 0.0f, 0.0f);
+    scaleVector = glm::vec3(1.0f, 1.0f, 1.0f);
 }
 
 // Draws the whole model

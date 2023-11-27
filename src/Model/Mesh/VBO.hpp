@@ -10,6 +10,7 @@ struct Vertex
 {
     glm::vec3 position;
     glm::vec2 textureUV;
+    glm::vec3 normal;
 };
 
 // Vertex Array Buffer Object (VBO)

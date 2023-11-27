@@ -131,6 +131,7 @@ void ModelLoader::loadMesh(unsigned int meshIndex)
     // Gets the indices of all the vertices accessors
     unsigned int posAccIndex = JSON["meshes"][meshIndex]["primitives"][0]["attributes"]["POSITION"];
     unsigned int texAccIndex = JSON["meshes"][meshIndex]["primitives"][0]["attributes"]["TEXCOORD_0"];
+    unsigned int normalAccIndex = JSON["meshes"][meshIndex]["primitives"][0]["attributes"]["NORMAL"];
     unsigned int indAccIndex = JSON["meshes"][meshIndex]["primitives"][0]["indices"];
 
     // Gets the position and texture coordinates vectors
@@ -138,9 +139,11 @@ void ModelLoader::loadMesh(unsigned int meshIndex)
     std::vector<glm::vec3> positions = groupFloatsVec3(posVec);
     std::vector<float> texVec = getFloats(JSON["accessors"][texAccIndex]);
     std::vector<glm::vec2> textureUVs = groupFloatsVec2(texVec);
+    std::vector<float> normalVec = getFloats(JSON["accessors"][normalAccIndex]);
+    std::vector<glm::vec3> normals = groupFloatsVec3(normalVec);
 
     // Assembles the vertices and gets the indices and textures
-    std::vector<Vertex> vertices = assembleVertices(positions, textureUVs);
+    std::vector<Vertex> vertices = assembleVertices(positions, textureUVs, normals);
     std::vector<GLuint> indices = getIndices(JSON["accessors"][indAccIndex]);
     std::vector<Texture> textures = getTextures();
 
@@ -149,12 +152,12 @@ void ModelLoader::loadMesh(unsigned int meshIndex)
 }
 
 // Groups the position, normal and texture vectors in a Vertex vector
-std::vector<Vertex> ModelLoader::assembleVertices(std::vector<glm::vec3> positions, std::vector<glm::vec2> textureUVs)
+std::vector<Vertex> ModelLoader::assembleVertices(std::vector<glm::vec3> positions, std::vector<glm::vec2> textureUVs, std::vector<glm::vec3> normals)
 {
     std::vector<Vertex> vertices;
     for(unsigned int i=0; i<positions.size(); i++)
     {
-        vertices.push_back(Vertex{positions[i], textureUVs[i]});
+        vertices.push_back(Vertex{positions[i], textureUVs[i], normals[i]});
     }
 
     return vertices;

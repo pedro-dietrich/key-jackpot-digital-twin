@@ -22,9 +22,17 @@ int main(int argc, char** argv)
 	// Creates the default shader program
 	ShaderProgram defaultShader("Default.vert", "Default.frag");
 
-	// Creates the model for the base of the structure
+	// Creates the models
 	Model base("Base/Base.gltf", defaultShader);
 	base.setScale(0.04f);
+
+	Model stepperMotor0("StepperMotor0/StepperMotor0.gltf", defaultShader);
+	stepperMotor0.setScale(0.1f);
+	stepperMotor0.setPosition(glm::vec3(0.0f, 0.7f, 1.5f));
+
+	Model axis0("Axis/Axis.gltf", defaultShader);
+	axis0.setScale(0.002f);
+	axis0.setPosition(glm::vec3(0.4f, 0.5f, 1.0f));
 
 	// Enables depth test to only render the closest surface
 	glEnable(GL_DEPTH_TEST);
@@ -41,10 +49,12 @@ int main(int argc, char** argv)
 		// Updates camera
 		camera.updateMatrix();
 
-		// Rotates and draws the base
-		base.setRotation(glfwGetTime()/4, glm::vec3(0.8f, 0.6f, 0.0f));
+		// Draws the models
 		base.draw(camera);
+		stepperMotor0.draw(camera);
+		axis0.draw(camera);
 
+		// Handles window events
 		window->updateWindow();
 	}
 
