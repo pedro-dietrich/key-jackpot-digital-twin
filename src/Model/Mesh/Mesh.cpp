@@ -81,11 +81,13 @@ void Mesh::generateMeshObjects()
     vbo.bind();
     ebo.bind();
 
-    // Fetches the location for aPos and aTex attributes in the shader program
+    // Fetches the location for aPos, aTex and aNormal attributes in the shader program
     GLint posLocation = glGetAttribLocation(shaderProgram->ID, "aPos");
-    GLuint texLocation = glGetAttribLocation(shaderProgram->ID, "aTex");
+    GLint texLocation = glGetAttribLocation(shaderProgram->ID, "aTex");
+    GLint normalLocation = glGetAttribLocation(shaderProgram->ID, "aNormal");
 
     // Links VBO attributes (vertex and texture coordinates) to the VAO
     vao.linkAttribute(vbo, posLocation, 3, GL_FLOAT, sizeof(Vertex), (void*) 0);
     vao.linkAttribute(vbo, texLocation, 2, GL_FLOAT, sizeof(Vertex), (void*) (3*sizeof(float)));
+    vao.linkAttribute(vbo, normalLocation, 3, GL_FLOAT, sizeof(Vertex), (void*) (5*sizeof(float)));
 }
