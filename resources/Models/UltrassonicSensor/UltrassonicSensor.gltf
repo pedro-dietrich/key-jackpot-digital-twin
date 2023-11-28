@@ -15,7 +15,7 @@
 	"nodes":[
 		{
 			"mesh":0,
-			"name":"Stepper Motor 0"
+			"name":"UltrassonicSensor"
 		}
 	],
 	"materials":[
@@ -33,7 +33,7 @@
 	],
 	"meshes":[
 		{
-			"name":"Cube.001",
+			"name":"Cube.002",
 			"primitives":[
 				{
 					"attributes":{
@@ -56,37 +56,37 @@
 	"images":[
 		{
 			"mimeType":"image/png",
-			"name":"stepper_motor_0",
-			"uri":"textures/stepper_motor_0.png"
+			"name":"ultrassonic_sensor",
+			"uri":"textures/ultrassonic_sensor.png"
 		}
 	],
 	"accessors":[
 		{
 			"bufferView":0,
 			"componentType":5126,
-			"count":122,
+			"count":112,
 			"max":[
-				19.5,
-				19.5,
-				29.5
+				22.5,
+				10,
+				12
 			],
 			"min":[
-				-19.5,
-				-19.5,
-				-16.5
+				-22.5,
+				-10,
+				-0.5
 			],
 			"type":"VEC3"
 		},
 		{
 			"bufferView":1,
 			"componentType":5126,
-			"count":122,
+			"count":112,
 			"type":"VEC3"
 		},
 		{
 			"bufferView":2,
 			"componentType":5126,
-			"count":122,
+			"count":112,
 			"type":"VEC2"
 		},
 		{
@@ -99,26 +99,26 @@
 	"bufferViews":[
 		{
 			"buffer":0,
-			"byteLength":1464,
+			"byteLength":1344,
 			"byteOffset":0,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":1464,
-			"byteOffset":1464,
+			"byteLength":1344,
+			"byteOffset":1344,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":976,
-			"byteOffset":2928,
+			"byteLength":896,
+			"byteOffset":2688,
 			"target":34962
 		},
 		{
 			"buffer":0,
 			"byteLength":480,
-			"byteOffset":3904,
+			"byteOffset":3584,
 			"target":34963
 		}
 	],
@@ -130,8 +130,8 @@
 	],
 	"buffers":[
 		{
-			"byteLength":4384,
-			"uri":"StepperMotor0.bin"
+			"byteLength":4064,
+			"uri":"UltrassonicSensor.bin"
 		}
 	]
 }

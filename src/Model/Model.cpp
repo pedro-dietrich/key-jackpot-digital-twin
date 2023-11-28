@@ -38,11 +38,11 @@ void Model::setPosition(glm::vec3 position)
 // Updates the model rotation
 void Model::setRotation(float angle, glm::vec3 rotationAxis)
 {
-    rotationQuaternion = glm::angleAxis(angle, rotationAxis);
+    rotationQuaternion = glm::angleAxis(glm::radians(angle), rotationAxis);
 }
 
 // Update the model scale
-void Model::setScale(float scale)
+void Model::setScale(glm::vec3 scale)
 {
-    scaleVector = glm::vec3(scale, scale, scale);
+    scaleVector = scale;
 }

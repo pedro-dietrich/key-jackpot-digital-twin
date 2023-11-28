@@ -14,7 +14,7 @@ class Model
         // Sets the position and rotation of the model
         void setPosition(glm::vec3 position);
         void setRotation(float angle, glm::vec3 rotationAxis);
-        void setScale(float scale);
+        void setScale(glm::vec3 scale);
 
     private:
         // Meshes that compose the model

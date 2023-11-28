@@ -15,7 +15,7 @@
 	"nodes":[
 		{
 			"mesh":0,
-			"name":"Stepper Motor 0"
+			"name":"Cube"
 		}
 	],
 	"materials":[
@@ -56,69 +56,69 @@
 	"images":[
 		{
 			"mimeType":"image/png",
-			"name":"stepper_motor_0",
-			"uri":"textures/stepper_motor_0.png"
+			"name":"axis_support",
+			"uri":"textures/axis_support.png"
 		}
 	],
 	"accessors":[
 		{
 			"bufferView":0,
 			"componentType":5126,
-			"count":122,
+			"count":108,
 			"max":[
-				19.5,
-				19.5,
-				29.5
+				7,
+				32,
+				20.5
 			],
 			"min":[
-				-19.5,
-				-19.5,
-				-16.5
+				-7,
+				0,
+				-20.5
 			],
 			"type":"VEC3"
 		},
 		{
 			"bufferView":1,
 			"componentType":5126,
-			"count":122,
+			"count":108,
 			"type":"VEC3"
 		},
 		{
 			"bufferView":2,
 			"componentType":5126,
-			"count":122,
+			"count":108,
 			"type":"VEC2"
 		},
 		{
 			"bufferView":3,
 			"componentType":5123,
-			"count":240,
+			"count":252,
 			"type":"SCALAR"
 		}
 	],
 	"bufferViews":[
 		{
 			"buffer":0,
-			"byteLength":1464,
+			"byteLength":1296,
 			"byteOffset":0,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":1464,
-			"byteOffset":1464,
+			"byteLength":1296,
+			"byteOffset":1296,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":976,
-			"byteOffset":2928,
+			"byteLength":864,
+			"byteOffset":2592,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":480,
-			"byteOffset":3904,
+			"byteLength":504,
+			"byteOffset":3456,
 			"target":34963
 		}
 	],
@@ -130,8 +130,8 @@
 	],
 	"buffers":[
 		{
-			"byteLength":4384,
-			"uri":"StepperMotor0.bin"
+			"byteLength":3960,
+			"uri":"AxisSupport.bin"
 		}
 	]
 }

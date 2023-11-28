@@ -15,7 +15,7 @@
 	"nodes":[
 		{
 			"mesh":0,
-			"name":"Stepper Motor 0"
+			"name":"Barrier"
 		}
 	],
 	"materials":[
@@ -56,69 +56,69 @@
 	"images":[
 		{
 			"mimeType":"image/png",
-			"name":"stepper_motor_0",
-			"uri":"textures/stepper_motor_0.png"
+			"name":"barrier",
+			"uri":"textures/barrier.png"
 		}
 	],
 	"accessors":[
 		{
 			"bufferView":0,
 			"componentType":5126,
-			"count":122,
+			"count":48,
 			"max":[
-				19.5,
-				19.5,
-				29.5
+				124.99999237060547,
+				370,
+				0.5
 			],
 			"min":[
-				-19.5,
-				-19.5,
-				-16.5
+				-124.99999237060547,
+				0,
+				-0.5
 			],
 			"type":"VEC3"
 		},
 		{
 			"bufferView":1,
 			"componentType":5126,
-			"count":122,
+			"count":48,
 			"type":"VEC3"
 		},
 		{
 			"bufferView":2,
 			"componentType":5126,
-			"count":122,
+			"count":48,
 			"type":"VEC2"
 		},
 		{
 			"bufferView":3,
 			"componentType":5123,
-			"count":240,
+			"count":96,
 			"type":"SCALAR"
 		}
 	],
 	"bufferViews":[
 		{
 			"buffer":0,
-			"byteLength":1464,
+			"byteLength":576,
 			"byteOffset":0,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":1464,
-			"byteOffset":1464,
+			"byteLength":576,
+			"byteOffset":576,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":976,
-			"byteOffset":2928,
+			"byteLength":384,
+			"byteOffset":1152,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":480,
-			"byteOffset":3904,
+			"byteLength":192,
+			"byteOffset":1536,
 			"target":34963
 		}
 	],
@@ -130,8 +130,8 @@
 	],
 	"buffers":[
 		{
-			"byteLength":4384,
-			"uri":"StepperMotor0.bin"
+			"byteLength":1728,
+			"uri":"Barrier.bin"
 		}
 	]
 }

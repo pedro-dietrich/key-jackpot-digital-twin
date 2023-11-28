@@ -3,6 +3,7 @@
 #include "Window/KeyInput.hpp"
 #include "Camera/Camera.hpp"
 #include "Model/Model.hpp"
+#include "Scene/Scene.hpp"
 
 int main(int argc, char** argv)
 {
@@ -14,25 +15,15 @@ int main(int argc, char** argv)
 
 	// Create window
 	Window* window = Window::getWindowInstance();
+	// Creates the default shader program
+	ShaderProgram defaultShader("Default.vert", "Default.frag");
 	// Creates camera
 	Camera camera;
 	// Creates a KeyInput object to handle input
 	KeyInput keyInput(&camera);
 
-	// Creates the default shader program
-	ShaderProgram defaultShader("Default.vert", "Default.frag");
-
-	// Creates the models
-	Model base("Base/Base.gltf", defaultShader);
-	base.setScale(0.04f);
-
-	Model stepperMotor0("StepperMotor0/StepperMotor0.gltf", defaultShader);
-	stepperMotor0.setScale(0.1f);
-	stepperMotor0.setPosition(glm::vec3(0.0f, 0.7f, 1.5f));
-
-	Model axis0("Axis/Axis.gltf", defaultShader);
-	axis0.setScale(0.002f);
-	axis0.setPosition(glm::vec3(0.4f, 0.5f, 1.0f));
+	// Creates the scene with the project structure
+	Scene scene(camera);
 
 	// Enables depth test to only render the closest surface
 	glEnable(GL_DEPTH_TEST);
@@ -46,17 +37,16 @@ int main(int argc, char** argv)
 
 		// Handles inputs
 		keyInput.handleInputs();
-		// Updates camera
-		camera.updateMatrix();
 
-		// Draws the models
-		base.draw(camera);
-		stepperMotor0.draw(camera);
-		axis0.draw(camera);
+		// Draws the scenary
+		scene.drawScene();
 
 		// Handles window events
 		window->updateWindow();
 	}
+
+	// Deallocates resources
+	scene.destroy();
 
 	return 0;
 }
