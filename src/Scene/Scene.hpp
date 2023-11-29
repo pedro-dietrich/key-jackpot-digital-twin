@@ -8,6 +8,9 @@ class Scene
         // Builds the scene
         Scene(Camera& cam);
 
+        // Updates the models positions
+        void updatePosition(glm::vec3 keyPosition);
+
         // Draws all the models in the scene
         void drawScene();
         // Deallocates memory

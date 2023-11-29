@@ -3,7 +3,7 @@
 ## Description
 
 This is a digital twin of a digital system called **Key Jackpot**, inspired by the game "Key Master".
-The digital twin will mirror everything the physical system does, and it can also control it by a serial communication using MQTT.
+The digital twin will mirror everything the physical system does, and it can also control it by a serial communication through USB.
 
 This project is made for the discipline PCS3645.
 
