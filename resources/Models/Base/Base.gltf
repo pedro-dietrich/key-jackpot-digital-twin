@@ -1,6 +1,6 @@
 {
 	"asset":{
-		"generator":"Khronos glTF Blender I/O v4.0.43",
+		"generator":"Khronos glTF Blender I/O v4.0.44",
 		"version":"2.0"
 	},
 	"scene":0,
@@ -15,7 +15,7 @@
 	"nodes":[
 		{
 			"mesh":0,
-			"name":"Cube"
+			"name":"Base"
 		}
 	],
 	"materials":[
@@ -66,14 +66,14 @@
 			"componentType":5126,
 			"count":24,
 			"max":[
-				17,
-				1,
-				20
+				170,
+				0,
+				200
 			],
 			"min":[
-				-17,
-				-1,
-				-20
+				-170,
+				-20,
+				-200
 			],
 			"type":"VEC3"
 		},

@@ -15,13 +15,13 @@
 	"nodes":[
 		{
 			"mesh":0,
-			"name":"Stepper Motor 0"
+			"name":"Plaform0"
 		}
 	],
 	"materials":[
 		{
 			"doubleSided":true,
-			"name":"Material.001",
+			"name":"Metal",
 			"pbrMetallicRoughness":{
 				"baseColorTexture":{
 					"index":0
@@ -33,7 +33,7 @@
 	],
 	"meshes":[
 		{
-			"name":"Cube.001",
+			"name":"Cube.004",
 			"primitives":[
 				{
 					"attributes":{
@@ -56,69 +56,69 @@
 	"images":[
 		{
 			"mimeType":"image/png",
-			"name":"stepper_motor_0",
-			"uri":"textures/stepper_motor_0.png"
+			"name":"plaform_0",
+			"uri":"textures/plaform_0.png"
 		}
 	],
 	"accessors":[
 		{
 			"bufferView":0,
 			"componentType":5126,
-			"count":122,
+			"count":97,
 			"max":[
-				19.5,
-				19.5,
-				29.5
+				35.5,
+				380.75,
+				52
 			],
 			"min":[
-				-19.5,
-				-19.5,
-				-16.5
+				-36,
+				-24.25,
+				-41
 			],
 			"type":"VEC3"
 		},
 		{
 			"bufferView":1,
 			"componentType":5126,
-			"count":122,
+			"count":97,
 			"type":"VEC3"
 		},
 		{
 			"bufferView":2,
 			"componentType":5126,
-			"count":122,
+			"count":97,
 			"type":"VEC2"
 		},
 		{
 			"bufferView":3,
 			"componentType":5123,
-			"count":240,
+			"count":159,
 			"type":"SCALAR"
 		}
 	],
 	"bufferViews":[
 		{
 			"buffer":0,
-			"byteLength":1464,
+			"byteLength":1164,
 			"byteOffset":0,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":1464,
-			"byteOffset":1464,
+			"byteLength":1164,
+			"byteOffset":1164,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":976,
-			"byteOffset":2928,
+			"byteLength":776,
+			"byteOffset":2328,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":480,
-			"byteOffset":3904,
+			"byteLength":318,
+			"byteOffset":3104,
 			"target":34963
 		}
 	],
@@ -130,8 +130,8 @@
 	],
 	"buffers":[
 		{
-			"byteLength":4384,
-			"uri":"StepperMotor0.bin"
+			"byteLength":3424,
+			"uri":"Platform0.bin"
 		}
 	]
 }
