@@ -9,6 +9,7 @@ find_package(glad REQUIRED)
 find_package(glm REQUIRED)
 find_package(Stb REQUIRED)
 find_package(nlohmann_json REQUIRED)
+find_package(asio REQUIRED)
 
 set(
     INCLUDES
@@ -21,6 +22,7 @@ set(
     glad::glad
     glm::glm
     nlohmann_json::nlohmann_json
+    asio::asio
 )
 
 set(EXECUTABLE "key_jackpot_digital_twin")

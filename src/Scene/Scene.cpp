@@ -89,6 +89,19 @@ Scene::Scene(Camera& cam)
     models[ULTRASSONIC_SENSOR].setScale(glm::vec3(1.0f, 1.0f, -1.0f));
 }
 
+// Updates the models positions
+void Scene::updatePosition(glm::vec3 keyPosition)
+{
+    models[LINEAR_BEARING_0].setPosition(glm::vec3(-70.0f, 31.0f, keyPosition.x - 20.0f));
+    models[LINEAR_BEARING_1].setPosition(glm::vec3(-70.0f, 31.0f, keyPosition.x + 20.0f));
+    models[LINEAR_BEARING_0].setPosition(glm::vec3(-112.0f, 31.0f, keyPosition.x - 20.0f));
+    models[PLATFORM_0].setPosition(glm::vec3(-90.0f, 32.0f, keyPosition.x));
+    models[PLATFORM_1].setPosition(glm::vec3(-160.0f, keyPosition.y + 100.0f, keyPosition.x + 32.0f));
+    models[SERVOMOTOR].setPosition(glm::vec3(-110.0f, keyPosition.y + 80.0f, keyPosition.x + 8.0f));
+    models[RACK].setPosition(glm::vec3(keyPosition.z - 150.0f, keyPosition.y + 100.0f, keyPosition.x + 10.0f));
+    models[ULTRASSONIC_SENSOR].setPosition(glm::vec3(keyPosition.z - 25.0f, keyPosition.y + 100.0f, keyPosition.x + 10.0f));
+}
+
 // Draws all the models in the scene
 void Scene::drawScene()
 {

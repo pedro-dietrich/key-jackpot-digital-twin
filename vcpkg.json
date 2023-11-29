@@ -17,6 +17,9 @@
         },
         {
             "name": "nlohmann-json"
+        },
+        {
+            "name": "asio"
         }
     ]
 }

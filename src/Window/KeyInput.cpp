@@ -54,3 +54,37 @@ void KeyInput::handleInputs()
     if(recenter)
         glfwSetCursorPos(win, (window->getWidth() / 2), halfHeight);
 }
+
+// Handles serial inputs
+void KeyInput::handleSerialInputs(SerialTransmitter* transmitter)
+{
+    GLFWwindow* win = window->getGLFWwindow();
+
+    // Game state controls
+    if(glfwGetKey(win, GLFW_KEY_I) == GLFW_PRESS)   // I
+        transmitter->sendCharacter('i');            // Initiates game
+    if(glfwGetKey(win, GLFW_KEY_J) == GLFW_PRESS)   // J
+        transmitter->sendCharacter('j');            // Inserts key
+    if(glfwGetKey(win, GLFW_KEY_R) == GLFW_PRESS)   // R
+        transmitter->sendCharacter('r');            // Resets game
+
+    // Starts key movement
+    if(glfwGetKey(win, GLFW_KEY_UP) == GLFW_PRESS)      // Up arrow
+        transmitter->sendCharacter('w');                // Moves key up
+    if(glfwGetKey(win, GLFW_KEY_LEFT) == GLFW_PRESS)    // Left arrow
+        transmitter->sendCharacter('a');                // Moves key left
+    if(glfwGetKey(win, GLFW_KEY_DOWN) == GLFW_PRESS)    // Down arrow
+        transmitter->sendCharacter('s');                // Moves key down
+    if(glfwGetKey(win, GLFW_KEY_RIGHT) == GLFW_PRESS)   // Right arrow
+        transmitter->sendCharacter('d');                // Moves key right
+
+    // Ceases key movement
+    if(glfwGetKey(win, GLFW_KEY_UP) == GLFW_RELEASE)    // Up arrow released
+        transmitter->sendCharacter('W');                // Stop moving key up
+    if(glfwGetKey(win, GLFW_KEY_LEFT) == GLFW_RELEASE)  // Left arrow released
+        transmitter->sendCharacter('A');                // Stop moving key left
+    if(glfwGetKey(win, GLFW_KEY_DOWN) == GLFW_RELEASE)  // Down arrow released
+        transmitter->sendCharacter('S');                // Stop moving key down
+    if(glfwGetKey(win, GLFW_KEY_RIGHT) == GLFW_RELEASE) // Right arrow released
+        transmitter->sendCharacter('D');                // Stop moving key right
+}
