@@ -6,21 +6,19 @@
 #include "Window/KeyInput.hpp"
 #include "Camera/Camera.hpp"
 #include "Scene/Scene.hpp"
-#include "Serial/SerialReceiver.hpp"
-#include "Serial/SerialTransmitter.hpp"
+#include "Serial/SerialPort.hpp"
 
 int main(int argc, char** argv)
 {
-	// Port to be used for serial communication (COM3 set as default)
-	const char* serialPortName = "COM3";
+	// Port to be used for serial communication (COM6 set as default)
+	const char* serialPortName = "COM6";
 
-	// Sets the path for the executable
-	if(argc > 0)
-		FileHandler::setRootPath(argv[0]);
-	else if(argc > 1)
-		serialPortName = argv[1];
-	else
+	// Sets the path for the executable and the port for serial communication
+	if(argc < 1)
 		return -1;
+	FileHandler::setRootPath(argv[0]);
+	if(argc > 1)
+		serialPortName = argv[1];
 
 	// Create window
 	Window* window = Window::getWindowInstance();
@@ -34,23 +32,18 @@ int main(int argc, char** argv)
 	// Creates the scene with the project structure
 	Scene scene(camera);
 
-	// Enables serial communication
-	SerialTransmitter* transmitter = nullptr;
+	// Creates serial communication handler
+	SerialPort* serialPort = nullptr;
+	asio::io_context ioContext;
 	try
 	{
-		asio::io_context ioContext;
-		SerialReceiver serialReceiver(ioContext, serialPortName, &scene);
-		SerialTransmitter serialTransmitter(ioContext, serialPortName);
-		transmitter = &serialTransmitter;
-
-		serialReceiver.readAsync();
-		ioContext.run();
+		serialPort = new SerialPort(ioContext, serialPortName, scene);
+		serialPort->startListening();
 	}
-	catch(const std::exception e)
+	catch(const std::exception& e)
 	{
-		std::cerr << "Serial communication error: " << e.what() << std::endl;
-		std::cerr << "Port used: " << serialPortName << std::endl;
-		transmitter = nullptr;
+		std::cerr << "Failed to start serial communication." << std::endl;
+		std::cerr << e.what() << std::endl;
 	}
 
 	// Enables depth test to only render the closest surface
@@ -65,8 +58,13 @@ int main(int argc, char** argv)
 
 		// Handles inputs
 		keyInput.handleInputs();
-		if(transmitter != nullptr)
-			keyInput.handleSerialInputs(transmitter);
+
+		// Handles serial communication if available
+		if(serialPort != nullptr)
+		{
+			serialPort->poll();
+			keyInput.handleSerialInputs(serialPort->getSerialTransmitter());
+		}
 
 		// Draws the scenary
 		scene.drawScene();
@@ -75,6 +73,9 @@ int main(int argc, char** argv)
 		window->updateWindow();
 	}
 
+	// Stops the serial reading
+	if(serialPort != nullptr)
+		serialPort->stopListening();
 	// Deallocates resources
 	scene.destroy();
 

@@ -7,12 +7,12 @@ class SerialTransmitter
 {
     public:
         // Configures the serial communication setings
-        SerialTransmitter(asio::io_context& ioContext, const char* port);
+        SerialTransmitter(asio::serial_port* serialPort);
 
         // Sends a command character
         void sendCharacter(char data);
 
     private:
         // Object with the serial port information
-        asio::serial_port serialPort;
+        asio::serial_port* serialPort;
 };
