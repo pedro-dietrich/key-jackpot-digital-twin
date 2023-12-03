@@ -9,18 +9,18 @@ class SerialReceiver
 {
     public:
         // Configures the serial communication setings
-        SerialReceiver(asio::io_context& ioContext, const char* port, Scene* scene);
+        SerialReceiver(asio::serial_port* serialPort, asio::steady_timer* steadyTimer, Scene* scene);
 
         // Starts to listen to the port
         void readAsync();
 
     private:
         // Object with the serial port information
-        asio::serial_port serialPort;
+        asio::serial_port* serialPort;
         // Timer for timeout
-        asio::steady_timer steadyTimer;
+        asio::steady_timer* steadyTimer;
         // Buffer for received strings
-        char receiveBuffer[13];
+        asio::streambuf receiveBuffer;
         // Scene reference
         Scene* scene;
 

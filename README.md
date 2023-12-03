@@ -50,4 +50,14 @@ ninja -C build/
 
 It is recommended to copy the `cmake` and the build tool commands into a .cmd or .sh file, since it is necessary to do this everytime you compile this program.
 
+## Execution
+
 The executable can be found inside the `build/` folder, with the specific path depending on the build tool used.
+
+To use the serial communication through USB with the physical structure of the Key Jackpot, find the serial port name (such as "COM9" or "/dev/ttyUSB0") and pass it as a parameter when executing the application.
+
+```bash
+./key_jackpot_digital_twin COM4
+```
+
+Not using the serial communication will only render the structure, and will not move, as there is no information about the real structure.

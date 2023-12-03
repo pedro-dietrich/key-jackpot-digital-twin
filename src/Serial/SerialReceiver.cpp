@@ -1,27 +1,22 @@
 #include "SerialReceiver.hpp"
 
 #include <iostream>
+#include <regex>
 
 // Configures the serial communication setings
-SerialReceiver::SerialReceiver(asio::io_context& ioContext, const char* port, Scene* scene)
-    : serialPort(ioContext, port), steadyTimer(ioContext), scene(scene)
-{
-    asio::serial_port_base::character_size charSize(7);
-    asio::serial_port_base::parity parity(asio::serial_port_base::parity::odd);
-    asio::serial_port_base::baud_rate baudRate(115200);
-    serialPort.set_option(charSize);
-    serialPort.set_option(parity);
-    serialPort.set_option(baudRate);
-}
+SerialReceiver::SerialReceiver(asio::serial_port* serialPort, asio::steady_timer* steadyTimer, Scene* scene)
+    : serialPort(serialPort), steadyTimer(steadyTimer), scene(scene)
+{}
 
 // Starts to listen to the port
 void SerialReceiver::readAsync()
 {
-    asio::async_read
+    asio::async_read_until
     (
-        serialPort,
-        asio::buffer(receiveBuffer),
-        [this](const asio::error_code& errorCode, std::size_t)
+        *serialPort,
+        receiveBuffer,
+        '#',
+        [this](const asio::error_code& errorCode, std::size_t bytesRead)
         {
             if(!errorCode)
             {
@@ -39,20 +34,34 @@ void SerialReceiver::readAsync()
 // Decodes the received data
 void SerialReceiver::processReceivedData()
 {
-    std::cout << "Serial data: " << receiveBuffer;
+    // Converts the data in the buffer to a string
+    std::string receivedData;
+    std::istream inStream(&receiveBuffer);
+    std::getline(inStream, receivedData, '#');
 
-    // Gets the numeric value
-    std::string receivedData(receiveBuffer);
-    size_t xPos = receivedData.find('x');
-    size_t yPos = receivedData.find('y');
-    size_t zPos = receivedData.find('z');
-    std::string xValue = receivedData.substr(xPos + 1, 3);
-    std::string yValue = receivedData.substr(yPos + 1, 3);
-    std::string zValue = receivedData.substr(zPos + 1, 3);
-    glm::vec3 keyPosition = glm::vec3(std::stof(xValue), std::stof(yValue), std::stof(zValue));
+    std::cout << "Serial data: " << receivedData << '\t';
 
-    std::cout << "(" << keyPosition.x << ", " << keyPosition.y << ", " << keyPosition.z << ")" << std::endl;
+    // Checks if serial input matches "x123y456z789" format
+    std::regex keyRegex(R"x(x\d{3}y\d{3}z\d{3}})x");
 
-    // Updates the structure position
-    scene->updatePosition(keyPosition);
+    // Gets the numeric value if input is valid
+    if(std::regex_match(receivedData, keyRegex))
+    {
+        size_t xPos = receivedData.find('x');
+        size_t yPos = receivedData.find('y');
+        size_t zPos = receivedData.find('z');
+        std::string xValue = receivedData.substr(xPos + 1, 3);
+        std::string yValue = receivedData.substr(yPos + 1, 3);
+        std::string zValue = receivedData.substr(zPos + 1, 3);
+        glm::vec3 keyPosition = glm::vec3(std::stof(xValue), std::stof(yValue), std::stof(zValue));
+
+        std::cout << "(" << keyPosition.x << ", " << keyPosition.y << ", " << keyPosition.z << ")" << std::endl;
+
+        // Updates the structure position
+        scene->updatePosition(keyPosition);
+    }
+    else
+    {
+        std::cerr << "Unexpected serial input received: " << receivedData << std::endl;
+    }
 }
