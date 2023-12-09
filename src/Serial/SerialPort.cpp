@@ -15,7 +15,7 @@ SerialPort::SerialPort(asio::io_context& ioContext, const char* port, Scene& sce
     // Configures the serial port
     asio::serial_port_base::character_size charSize(7);
     asio::serial_port_base::parity parity(asio::serial_port_base::parity::odd);
-    asio::serial_port_base::stop_bits stopBits(asio::serial_port_base::stop_bits::two);
+    asio::serial_port_base::stop_bits stopBits(asio::serial_port_base::stop_bits::one);
     asio::serial_port_base::baud_rate baudRate(115200);
     asio::serial_port_base::flow_control flowControl(asio::serial_port_base::flow_control::none);
     serialPort.set_option(charSize);

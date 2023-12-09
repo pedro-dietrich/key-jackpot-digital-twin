@@ -42,7 +42,7 @@ void SerialReceiver::processReceivedData()
     std::cout << "Serial data: " << receivedData << '\t';
 
     // Checks if serial input matches "x123y456z789" format
-    std::regex keyRegex(R"x(x\d{3}y\d{3}z\d{3}})x");
+    std::regex keyRegex(".*x\\d{3}y\\d{3}z\\d{3}.*");
 
     // Gets the numeric value if input is valid
     if(std::regex_match(receivedData, keyRegex))
@@ -53,12 +53,25 @@ void SerialReceiver::processReceivedData()
         std::string xValue = receivedData.substr(xPos + 1, 3);
         std::string yValue = receivedData.substr(yPos + 1, 3);
         std::string zValue = receivedData.substr(zPos + 1, 3);
-        glm::vec3 keyPosition = glm::vec3(std::stof(xValue), std::stof(yValue), std::stof(zValue));
 
-        std::cout << "(" << keyPosition.x << ", " << keyPosition.y << ", " << keyPosition.z << ")" << std::endl;
+        try
+        {
+            float x = std::stof(xValue);
+            float y = std::stof(yValue);
+            float z = std::stof(zValue);
 
-        // Updates the structure position
-        scene->updatePosition(keyPosition);
+            glm::vec3 keyPosition = glm::vec3(x, y, z);
+
+            std::cout << "(" << keyPosition.x << ", " << keyPosition.y << ", " << keyPosition.z << ")" << std::endl;
+
+            // Updates the structure position
+            scene->updatePosition(keyPosition);
+        }
+        catch(const std::exception& e)
+        {
+            std::cerr << "Invalid arguments:" << std::endl;
+            std::cerr << "x = " << xValue << " y = " << yValue << " z = " << zValue << std::endl;
+        }
     }
     else
     {

@@ -10,6 +10,7 @@ SerialTransmitter::SerialTransmitter(asio::serial_port* serialPort)
 // Sends a command character
 void SerialTransmitter::sendCharacter(char data)
 {
+    std::cout << "Sent '" << data << "'." << std::endl;
     asio::async_write
     (
         *serialPort,
