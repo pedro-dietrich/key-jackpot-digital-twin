@@ -69,22 +69,46 @@ void KeyInput::handleSerialInputs(SerialTransmitter* transmitter)
         transmitter->sendCharacter('r');            // Resets game
 
     // Starts key movement
-    if(glfwGetKey(win, GLFW_KEY_UP) == GLFW_PRESS)      // Up arrow
+    if(glfwGetKey(win, GLFW_KEY_UP) == GLFW_PRESS && !directionState[0])      // Up arrow
+    {
         transmitter->sendCharacter('w');                // Moves key up
-    if(glfwGetKey(win, GLFW_KEY_LEFT) == GLFW_PRESS)    // Left arrow
+        directionState[0] = true;
+    }
+    if(glfwGetKey(win, GLFW_KEY_LEFT) == GLFW_PRESS && !directionState[1])    // Left arrow
+    {
         transmitter->sendCharacter('a');                // Moves key left
-    if(glfwGetKey(win, GLFW_KEY_DOWN) == GLFW_PRESS)    // Down arrow
+        directionState[1] = true;
+    }
+    if(glfwGetKey(win, GLFW_KEY_DOWN) == GLFW_PRESS && !directionState[2])    // Down arrow
+    {
         transmitter->sendCharacter('s');                // Moves key down
-    if(glfwGetKey(win, GLFW_KEY_RIGHT) == GLFW_PRESS)   // Right arrow
+        directionState[2] = true;
+    }
+    if(glfwGetKey(win, GLFW_KEY_RIGHT) == GLFW_PRESS && !directionState[3])   // Right arrow
+    {
         transmitter->sendCharacter('d');                // Moves key right
+        directionState[3] = true;
+    }
 
     // Ceases key movement
-    if(glfwGetKey(win, GLFW_KEY_UP) == GLFW_RELEASE)    // Up arrow released
+    if(glfwGetKey(win, GLFW_KEY_UP) == GLFW_RELEASE && directionState[0])    // Up arrow released
+    {
         transmitter->sendCharacter('W');                // Stop moving key up
-    if(glfwGetKey(win, GLFW_KEY_LEFT) == GLFW_RELEASE)  // Left arrow released
+        directionState[0] = false;
+    }
+    if(glfwGetKey(win, GLFW_KEY_LEFT) == GLFW_RELEASE && directionState[1])  // Left arrow released
+    {
         transmitter->sendCharacter('A');                // Stop moving key left
-    if(glfwGetKey(win, GLFW_KEY_DOWN) == GLFW_RELEASE)  // Down arrow released
+        directionState[1] = false;
+    }
+    if(glfwGetKey(win, GLFW_KEY_DOWN) == GLFW_RELEASE && directionState[2])  // Down arrow released
+    {
         transmitter->sendCharacter('S');                // Stop moving key down
-    if(glfwGetKey(win, GLFW_KEY_RIGHT) == GLFW_RELEASE) // Right arrow released
+        directionState[2] = false;
+    }
+    if(glfwGetKey(win, GLFW_KEY_RIGHT) == GLFW_RELEASE && directionState[3]) // Right arrow released
+    {
         transmitter->sendCharacter('D');                // Stop moving key right
+        directionState[3] = false;
+    }
 }

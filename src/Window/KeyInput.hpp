@@ -22,4 +22,7 @@ class KeyInput
         Window* window;
         // Camera instance
         Camera* camera;
+
+        // Direction control state (for serial transmission)
+        bool directionState[4] = {false, false, false, false};
 };
