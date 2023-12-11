@@ -17,7 +17,7 @@ void Camera::changeView(ViewMode mode)
     // Configures the change to locked view
     if(viewMode != LOCKED_VIEW && mode == LOCKED_VIEW)
     {
-        position = glm::vec3(0.0f, 350.0f, 350.0f);
+        position = glm::vec3(0.0f, 400.0f, 350.0f);
         orientation = glm::normalize(-position);
         positionAngle = 0.0f;
     }
@@ -58,13 +58,13 @@ void Camera::moveCamera(Direction direction)
         switch(direction)
         {
             case LEFT:
-                positionAngle -= speed;
+                positionAngle -= 0.05f * speed;
                 break;
             case RIGHT:
-                positionAngle += speed;
+                positionAngle += 0.05f * speed;
                 break;
         }
-        position = 350.0f * glm::vec3(glm::sin(positionAngle), 1.0f, glm::cos(positionAngle));
+        position = 350.0f * glm::vec3(glm::sin(positionAngle), 1.142857143f, glm::cos(positionAngle));
         orientation = glm::normalize(-position);
     }
 }
@@ -115,7 +115,7 @@ bool Camera::rotateCamera(float mouseX, float mouseY)
         else if(viewMode == LOCKED_VIEW)    // Locked view
         {
             positionAngle += rotationY;
-            position = 350.0f * glm::vec3(glm::sin(positionAngle), 1.0f, glm::cos(positionAngle));
+            position = 350.0f * glm::vec3(glm::sin(positionAngle), 1.142857143f, glm::cos(positionAngle));
             orientation = glm::normalize(-position);
         }
         // Recenters the cursor
