@@ -49,8 +49,8 @@ class Camera
         ViewMode viewMode;
 
         // Camera position, orientation with initial values
-        glm::vec3 position = glm::vec3(0.0f, 350.0f, 350.0f);
-        glm::vec3 orientation = glm::vec3(0.0f, -0.7071f, -0.7071f);
+        glm::vec3 position = glm::vec3(0.0f, 400.0f, 350.0f);
+        glm::vec3 orientation = glm::vec3(0.0f, -0.752576695f, -0.658504608f);
         // Camera tranformation matrix (for perspective)
         glm::mat4 cameraMatrix = glm::mat4(1.0f);
 
