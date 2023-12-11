@@ -150,3 +150,10 @@ void Camera::exportMatrix(ShaderProgram& shader, const char* uniform)
     GLint location = glGetUniformLocation(shader.ID, uniform);
     glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(cameraMatrix));
 }
+
+// Exports the position vector to the fragment shader
+void Camera::exportPosition(ShaderProgram& shader, const char* uniform)
+{
+    GLint location = glGetUniformLocation(shader.ID, uniform);
+    glUniform3fv(location, 1, glm::value_ptr(position));
+}

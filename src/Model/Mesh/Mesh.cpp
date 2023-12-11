@@ -57,6 +57,7 @@ void Mesh::draw(Camera& camera, glm::vec3 translation, glm::quat rotation, glm::
     glUniformMatrix4fv(rotation_location, 1, GL_FALSE, glm::value_ptr(rotation_mat4));
     glUniformMatrix4fv(scale_location, 1, GL_FALSE, glm::value_ptr(scale_mat4));
     camera.exportMatrix(*shaderProgram, "camera");
+    camera.exportPosition(*shaderProgram, "cameraPosition");
 
     // Draws the mesh triangles using the GL_TRIANGLES primitive
     glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, 0);

@@ -43,6 +43,8 @@ class Camera
         void updateMatrix();
         // Exports the tranformation matrix to the vertex shader
         void exportMatrix(ShaderProgram& shader, const char* uniform);
+        // Exports the position vector to the fragment shader
+        void exportPosition(ShaderProgram& shader, const char* uniform);
 
     private:
         // Selects the view mode for the camera

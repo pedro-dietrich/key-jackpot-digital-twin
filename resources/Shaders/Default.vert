@@ -14,9 +14,10 @@ uniform mat4 scale;
 // Camera matrix transformation for perspective
 uniform mat4 camera;
 
-// Outputs the texture coordinates and normal vectors to the fragment shader
+// Outputs the texture coordinates, normal vectors and current position to the fragment shader
 varying vec2 texCoord;
 varying vec3 normal;
+varying vec3 currentPos;
 
 void main()
 {
@@ -27,6 +28,7 @@ void main()
 
     // Applies the transformation matrices
     vec4 currentPosition = translation * rotation * scale * vec4(aPos, 1.0f);
+    currentPos = vec3(currentPosition.x, currentPosition.y, currentPosition.z);
     // Applies perspective and outputs the final vertex position
     gl_Position = camera * currentPosition;
 }
