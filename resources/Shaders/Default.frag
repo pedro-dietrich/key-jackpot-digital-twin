@@ -5,7 +5,7 @@ varying vec2 texCoord;
 // Inputs the normal vectors
 varying vec3 normal;
 // Inputs the current position
-varying vec3 currentPosition;
+varying vec3 currentPos;
 
 // Gets the texture unit
 uniform sampler2D diffuse;
@@ -29,7 +29,7 @@ void main()
 
     // Specular lightning
     float specularLight = 0.20f;
-    vec3 viewDirection = normalize(cameraPosition - currentPosition);
+    vec3 viewDirection = normalize(cameraPosition - currentPos);
     vec3 reflectionDirection0 = reflect(-lightDirection0, normalizedNormal);
     vec3 reflectionDirection1 = reflect(-lightDirection1, normalizedNormal);
     float specularAmount0 = pow(max(dot(viewDirection, reflectionDirection0), 0.0f), 4);

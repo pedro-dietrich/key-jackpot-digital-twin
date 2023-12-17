@@ -92,14 +92,14 @@ Scene::Scene(Camera& cam)
 // Updates the models positions
 void Scene::updatePosition(glm::vec3 keyPosition)
 {
-    models[LINEAR_BEARING_0].setPosition(glm::vec3(-70.0f, 31.0f, keyPosition.x/2 - 120.0f));
-    models[LINEAR_BEARING_1].setPosition(glm::vec3(-70.0f, 31.0f, keyPosition.x/2 - 80.0f));
-    models[LINEAR_BEARING_2].setPosition(glm::vec3(-112.0f, 31.0f, keyPosition.x/2 - 120.0f));
-    models[PLATFORM_0].setPosition(glm::vec3(-90.0f, 32.0f, keyPosition.x/2 - 100.0f));
-    models[PLATFORM_1].setPosition(glm::vec3(-117.0f, keyPosition.y/2 + 100.0f, keyPosition.x/2 - 68.0f));
-    models[SERVOMOTOR].setPosition(glm::vec3(-110.0f, keyPosition.y/2 + 80.0f, keyPosition.x/2 - 92.0f));
-    models[RACK].setPosition(glm::vec3(-30 - 6*keyPosition.z, keyPosition.y/2 + 100.0f, keyPosition.x/2 - 90.0f));
-    models[ULTRASSONIC_SENSOR].setPosition(glm::vec3(95.0f - 6*keyPosition.z, keyPosition.y/2 + 100.0f, keyPosition.x/2 - 90.0f));
+    models[LINEAR_BEARING_0].setPosition(glm::vec3(-70.0f, 31.0f, 0.2*keyPosition.x - 120.0f));
+    models[LINEAR_BEARING_1].setPosition(glm::vec3(-70.0f, 31.0f, 0.2*keyPosition.x - 80.0f));
+    models[LINEAR_BEARING_2].setPosition(glm::vec3(-112.0f, 31.0f, 0.2*keyPosition.x - 120.0f));
+    models[PLATFORM_0].setPosition(glm::vec3(-90.0f, 32.0f, 0.2*keyPosition.x - 100.0f));
+    models[PLATFORM_1].setPosition(glm::vec3(-117.0f, 0.5*keyPosition.y + 100.0f, 0.2*keyPosition.x - 68.0f));
+    models[SERVOMOTOR].setPosition(glm::vec3(-110.0f, 0.5*keyPosition.y + 80.0f, 0.2*keyPosition.x - 92.0f));
+    models[RACK].setPosition(glm::vec3(-30.0f - 8*keyPosition.z, 0.5*keyPosition.y + 100.0f, 0.2*keyPosition.x - 90.0f));
+    models[ULTRASSONIC_SENSOR].setPosition(glm::vec3(95.0f - 8*keyPosition.z, 0.5*keyPosition.y + 100.0f, 0.2*keyPosition.x - 90.0f));
 }
 
 // Draws all the models in the scene
