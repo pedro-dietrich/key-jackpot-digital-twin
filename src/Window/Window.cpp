@@ -17,6 +17,9 @@ Window::Window()
     // Does not allow resize (it would stretch the image)
     glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
 
+    // Window shall not close until told to
+    Window::windowShouldClose = false;
+
     // Sets the window dimensions
     Window::width = 800;
     Window::height = 800;
@@ -55,6 +58,12 @@ void Window::updateWindow()
     glfwPollEvents();
 }
 
+// Closes the window
+void Window::closeWindow()
+{
+    Window::windowShouldClose = true;
+}
+
 // Gets the window's width
 unsigned int Window::getWidth()
 {
@@ -86,7 +95,7 @@ void Window::checkWindowCreation()
 // Decides whether the window should close or not
 bool Window::manageWindow()
 {
-    if(glfwWindowShouldClose(glfwWindow))
+    if(glfwWindowShouldClose(glfwWindow) || windowShouldClose)
     {
         terminate();
         return false;

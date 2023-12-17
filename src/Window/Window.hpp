@@ -17,6 +17,8 @@ class Window
         bool manageWindow();
         // Swaps buffers and handle window events
         void updateWindow();
+        // Closes the window
+        void closeWindow();
 
         // Gets window's width and height
         unsigned int getWidth();
@@ -30,6 +32,9 @@ class Window
 
         // GLFW's window object
         GLFWwindow* glfwWindow;
+
+        // Tells if window should close or not
+        bool windowShouldClose = false;
 
         // Window's width and height
         unsigned int width;

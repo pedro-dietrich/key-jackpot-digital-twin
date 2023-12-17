@@ -12,6 +12,10 @@ void KeyInput::handleInputs()
 {
     GLFWwindow* win = window->getGLFWwindow();
 
+    // Close window
+    if(glfwGetKey(win, GLFW_KEY_ESCAPE) == GLFW_PRESS)  // ESC
+        window->closeWindow();
+
     // View mode
     if(glfwGetKey(win, GLFW_KEY_1) == GLFW_PRESS)   // 1
         camera->changeView(LOCKED_VIEW);            // Changes to locked view
